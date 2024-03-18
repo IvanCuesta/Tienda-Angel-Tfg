@@ -5,9 +5,8 @@ import {
   Validators,
 } from '@angular/forms';
 
-import { RouterLink } from '@angular/router';
+import { Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
-import { HttpClientModule } from '@angular/common/http';
 
 @Component({
   selector: 'app-login',
@@ -19,7 +18,8 @@ export class LoginComponent {
 
   constructor(
     private formBuilder: FormBuilder,
-    private authService: AuthService
+    private authService: AuthService,
+    private router: Router
   ) {
     this.loginForm = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
@@ -36,7 +36,7 @@ export class LoginComponent {
         );
         console.log('Login exitoso:', response);
         localStorage.setItem('jwt_token', response.jwt);
-        // Aquí puedes redirigir al usuario o hacer algo con la respuesta
+        this.router.navigate(['/home']);
       } catch (error) {
         console.error('Error en el login:', error);
       }
