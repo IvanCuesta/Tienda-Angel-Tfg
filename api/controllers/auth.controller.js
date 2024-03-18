@@ -48,7 +48,7 @@ export async function login(req, res) {
     }
 
     // Generar un nuevo token JWT
-    const token = jwt.sign({ id: usuario.usuario_id }, SECRET_KEY, {
+    const token = jwt.sign({ usuario_id: usuario.usuario_id }, SECRET_KEY, {
       expiresIn: 86400, // expira en 24 horas
     });
 

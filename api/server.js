@@ -8,6 +8,13 @@ const PORT = process.env.PORT || 3000;
 db.authenticate()
   .then(() => {
     console.log('Conexión a la base de datos establecida exitosamente.');
+
+    // Sincronizar todos los modelos con la base de datos
+    return db.sync(); // Usar 'db.sync({ force: true })' solo si deseas forzar la sincronización, lo que puede eliminar datos existentes.
+  })
+  .then(() => {
+    console.log('Sincronización de la base de datos exitosa. Todos los modelos fueron inicializados.');
+
     // Iniciar el servidor solo si la conexión a la base de datos es exitosa
     app.listen(PORT, () => {
       console.log(`El servidor está corriendo en: http://localhost:${PORT}`);

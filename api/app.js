@@ -1,5 +1,4 @@
 import express from 'express';
-import bodyParser from 'body-parser';
 import cors from 'cors';
 import router from './routes/app.routes.js';
 
@@ -10,8 +9,8 @@ const corsOptions = {
 };
 
 app.use(cors(corsOptions));
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 // Rutas
 // import userRoutes from './routes/user.routes.mjs';
@@ -23,5 +22,11 @@ app.get("/", (req, res) => {
 
 // Usar un router de Express para las rutas de la API bajo el prefijo '/api'
 app.use('/api', router);
+
+// Middleware de manejo de errores
+app.use((err, req, res, next) => {
+  console.error(err);
+  res.status(500).send({ message: "Ocurrió un error en el servidor", error: err.message });
+});
 
 export default app;
