@@ -1,5 +1,6 @@
 import { DataTypes } from 'sequelize';
 import db from '../config/db.config.js';
+import Categorias from './categorias.model.js';
 
 const Productos = db.define('Productos', {
     producto_id: {
@@ -22,6 +23,17 @@ const Productos = db.define('Productos', {
 }, {
     tableName: 'productos',
     timestamps: false
+});
+
+// Establecer la relación
+Productos.belongsTo(Categorias, {
+    foreignKey: 'categoria_id',
+    as: 'categoria'
+});
+
+Categorias.hasMany(Productos, {
+    foreignKey: 'categoria_id',
+    as: 'productos'
 });
 
 export default Productos;

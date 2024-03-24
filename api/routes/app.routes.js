@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { login, register } from "../controllers/auth.controller.js";
-import { getProducts } from "../controllers/producto.controller.js";
+import { getProducts, getCategorias } from "../controllers/producto.controller.js";
 import verifyToken from "../middlewares/auth.middleware.js";
 
 const router = Router();
@@ -16,5 +16,8 @@ router.post("/login", login);
 
 // Ruta de get de productos
 router.get("/productos", getProducts);
+
+// Ruta de get de productos
+router.get("/categorias", getCategorias);
 
 export default router;
