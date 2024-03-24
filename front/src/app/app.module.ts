@@ -11,6 +11,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { AuthInterceptor  } from './interceptor/auth.interceptor';
 import { ProductComponent } from './components/product/product.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,7 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
     provide: HTTP_INTERCEPTORS,
     useClass : AuthInterceptor,
     multi: true,
-  },],
+  }, provideAnimationsAsync(),],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
