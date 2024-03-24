@@ -6,8 +6,8 @@ export async function getProducts(req, res) {
         const productos = await Productos.findAll({
             include: [{
                 model: Categorias,
-                as: 'categoria', // Asegúrate de que 'categoria' coincida con el alias utilizado en la definición de la asociación
-                attributes: ['nombre'] // Puedes especificar aquí los atributos de la categoría que quieres incluir. 'nombre' es solo un ejemplo.
+                as: 'categoria',
+                attributes: ['nombre']
             }]
         });
         res.status(200).send(productos);

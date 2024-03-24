@@ -17,7 +17,7 @@ router.post("/login", login);
 // Ruta de get de productos
 router.get("/productos", getProducts);
 
-// Ruta de get de productos
+// Ruta de get de categorias de producto
 router.get("/categorias", getCategorias);
 
 export default router;
